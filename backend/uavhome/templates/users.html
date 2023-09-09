@@ -1,0 +1,547 @@
+{% load static %}
+
+<!doctype html>
+<html class="sidebar-left-big-icons">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<title>Kullanıcılar</title>
+
+	<!-- Vendor CSS -->
+	<link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.css' %}">
+	<link rel="stylesheet" href="{% static 'vendor/font-awesome/css/all.min.css' %}">
+
+	<!-- Theme CSS -->
+	<link rel="stylesheet" href="{% static 'vendor/morris/morris.css' %}">
+	<link rel="stylesheet" href="{% static 'css/theme.css' %}">
+	<link rel="stylesheet" href="{% static 'css/skins/default.css' %}">
+	<link rel="stylesheet" href="{% static 'css/custom.css' %}">
+	<link rel="stylesheet" href="{% static 'iziTots/css/iziToast.min.css' %}">
+	<link rel="stylesheet" href="{% static '_dataTable/datatables.min.css' %}">
+	<link rel="stylesheet" href="{% static '_dataTable/tableCategory/table.css' %}">
+	<link rel="stylesheet" href="{% static 'vendor/bootstrap-datepicker/css/bootstrap-datepicker3.css' %}">
+
+
+
+
+</head>
+
+<body>
+	<input type="hidden" id="updateId">
+	<section class="body">
+		<!-- start: header -->
+		<header class="header" id="header">
+		</header>
+		<!-- end: header -->
+
+		<div class="inner-wrapper">
+			<!-- start: sidebar -->
+			<aside id="sidebar-left" class="sidebar-left">
+			</aside>
+			<!-- end: sidebar -->
+
+
+			<section role="main" class="content-body">
+				<header class="page-header"></header>
+				<!-- start: page -->
+
+
+
+
+
+
+				<section>
+					<div class="card card-modern mt-2">
+						<div class="card-body">
+							<div class="row g-2">
+
+								<div class="col-lg-2">
+									<button class="btn btn-primary w-100" data-bs-toggle="modal"
+										data-bs-target="#ModalAdd">
+										Kullanıcı Ekle
+										<i class="fa-solid fa-send-back mx-1"></i>
+									</button>
+								</div>
+
+
+							</div>
+
+						</div>
+					</div>
+				</section>
+
+				<section>
+					<div class="card card-modern mt-2">
+						<div class="card-body pt-4 card-table">
+
+
+							<div class="table-resonsive position-relative">
+								<table id="example" class="display table  table-striped table-bordered"
+									style="width:100%">
+									<thead class="bg-dark text-white table-head-position-sticky">
+										<tr>
+
+											<!-- <th style="width: 7px;"></th> -->
+											<th style="width: 7px;"></th>
+
+											<th>Ad</th>
+											<th>Soyad</th>
+											<th>mail</th>
+
+
+											<th style="width: 200px;"></th>
+
+										</tr>
+									</thead>
+									<tbody></tbody>
+									<!-- <tfoot>
+										<tr>
+											<th></th>
+											<th></th>
+											<th>Sözleşme No</th>
+											<th>1</th>
+											<th>2</th>
+											<th>3</th>
+											<th>date</th>
+										</tr>
+									</tfoot> -->
+								</table>
+							</div>
+
+
+
+						</div>
+					</div>
+				</section>
+
+
+
+
+
+
+
+
+
+
+
+				<!-- end: page -->
+			</section>
+		</div>
+	</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<div class="modal fade" id="ModalAdd" tabindex="-1">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header bg-primary text-white py-3">
+					<h1 class="modal-title fs-5 mt-0" id="exampleModalLabel"></h1>
+					<button type="button" class="btn-close text-white" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body py-4 position-relative">
+					<div class="search-content m-0">
+						<form id="FormAdd" class="row">
+		
+							<div class="col-md-6">
+								<div class="mb-3">
+									<label class="form-label">Ad</label>
+									<input type="text" class="form-control" required id="name">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="mb-3">
+									<label class="form-label">Soy Ad</label>
+									<input type="text" class="form-control" required id="surname">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="mb-3">
+									<label class="form-label">Mail</label>
+									<input type="text" class="form-control" required id="mail">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="mb-3">
+									<label class="form-label">şifre</label>
+									<input type="text" class="form-control" required id="password">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="mb-3">
+									<label class="form-label">Ülke</label>
+									<input type="text" class="form-control" required id="country">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="mb-3">
+									<label class="form-label">Şehir</label>
+									<input type="text" class="form-control" required id="city">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="mb-3">
+									<label class="form-label">İlçe</label>
+									<input type="text" class="form-control" required id="district">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="mb-3">
+									<label class="form-label">İletişim Numarası</label>
+									<input type="text" class="form-control" required id="contactNumber">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="mb-3">
+									<label class="form-label">Kimlik Numarası</label>
+									<input type="text" class="form-control" required id="identityNumber">
+								</div>
+							</div>
+							<div class="col-md-6">
+
+								<div class="mb-3">
+									<label class="form-label">Resim</label>
+									<input type="text" class="form-control" required id="picturePath">
+								</div>
+							</div>
+							<div class="col-12">
+								<button type="submit" class="btn btn-success px-5">Ekle</button>
+							</div>
+
+						</form>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="ModalUpdate" tabindex="-1">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header bg-primary text-white py-3">
+					<h1 class="modal-title fs-5 mt-0" id="exampleModalLabel"></h1>
+					<button type="button" class="btn-close text-white" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body py-4 position-relative">
+					<div class="search-content m-0">
+						<form id="FormUpdate" class="row">
+							<div class="col-md-6">
+								<div class="mb-3">
+									<label class="form-label">Ad</label>
+									<input type="text" class="form-control" required id="nameUpdate">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="mb-3">
+									<label class="form-label">Soy Ad</label>
+									<input type="text" class="form-control" required id="surnameUpdate">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="mb-3">
+									<label class="form-label">Mail</label>
+									<input type="text" class="form-control" required id="mailUpdate">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="mb-3">
+									<label class="form-label">şifre</label>
+									<input type="text" class="form-control" required id="passwordUpdate">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="mb-3">
+									<label class="form-label">İletişim Numarası</label>
+									<input type="text" class="form-control" required id="contactNumberUpdate">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="mb-3">
+									<label class="form-label">Kimlik Numarası</label>
+									<input type="text" class="form-control" required id="identityNumberUpdate">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="mb-3">
+									<label class="form-label">Resim</label>
+									<input type="text" class="form-control" required id="picturePathUpdate">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="mb-3">
+									<label class="form-label">Ülke</label>
+									<input type="text" class="form-control" required id="countryUpdate">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="mb-3">
+									<label class="form-label">Şehir</label>
+									<input type="text" class="form-control" required id="cityUpdate">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="mb-3">
+									<label class="form-label">İlçe</label>
+									<input type="text" class="form-control" required id="districtUpdate">
+								</div>
+							</div>
+							<div class="col-12">
+								<button type="submit" class="btn btn-success px-5">Güncelle</button>
+							</div>
+						</form>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+	<!-- Vendor -->
+	<script src="{% static 'vendor/jquery/jquery.js' %}"></script>
+	<script src="{% static 'vendor/jquery-browser-mobile/jquery.browser.mobile.js' %}"></script>
+	<script src="{% static 'vendor/nanoscroller/nanoscroller.js' %}"></script>
+	<script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+
+
+	<script src="{% static 'vendor/popper/umd/popper.min.js' %}"></script>
+	<script src="{% static 'vendor/modernizr/modernizr.js' %}"></script>
+
+
+
+	<script src="{% static 'vendor/bootstrap-datepicker/js/bootstrap-datepicker.js' %}"></script>
+	<script src="{% static 'vendor/common/common.js' %}"></script>
+
+
+	<script src="{% static 'iziTots/js/iziToast.min.js' %}"></script>
+	<script src="{% static 'iziTots/js/settings.js' %}"></script>
+
+	<script src="{% static 'js/custom.js' %}"></script>
+	<script src="{% static 'js/handlebars.min.js' %}"></script>
+	<script src="{% static '_layout.js' %}"></script>
+
+
+	<script src="{% static '_dataTable/datatables.min.js' %}"></script>
+	<script src="https://cdn.datatables.net/fixedheader/3.1.9/js/dataTables.fixedHeader.min.js"></script>
+
+	<!-- <script src="{% static '_dataTable/tableCategory/table.js' %}"></script> -->
+
+
+
+
+	<script src="{% static 'js/theme.js' %}"></script>
+	<script src="{% static 'js/theme.init.js' %}"></script>
+	<script src="{% static 'js/examples/examples.advanced.form.js' %}"></script>
+
+
+	<script>
+		$(document).ready(function () {
+			data();
+
+
+			$("body").on("click", ".btnUpdate", function (e) {
+				e.preventDefault();
+				var id = $(this).attr("data-id");
+				$("#ModalUpdate").modal("show");
+				$.ajax({
+					type: "GET",
+					url: "/api/users/" + id + "/",
+					success: function (response) {
+						// console.log(response);
+						// alert(response.name);
+						$("#nameUpdate").val(response.name);
+						$("#surnameUpdate").val(response.surname);
+						$("#mailUpdate").val(response.mail);
+						$("#passwordUpdate").val(response.password);
+						$("#contactNumberUpdate").val(response.contactNumber);
+						$("#identityNumberUpdate").val(response.identityNumber);
+						$("#picturePathUpdate").val(response.picturePath);
+						$("#cityUpdate").val(response.city);
+						$("#countryUpdate").val(response.country);
+						$("#districtUpdate").val(response.district);
+
+						$("#updateId").val(response.id);
+
+					},
+					error: function (error) {
+						console.error("Veri alınamadı!", error);
+					}
+				});
+			});
+
+			$("body").on("click", ".btnDelete", function (e) {
+				e.preventDefault();
+				var id = $(this).attr("data-id");
+
+				var onay = confirm("Bu öğeyi silmek istediğinizden emin misiniz?");
+				if (onay) {
+					$.ajax({
+						type: "DELETE",
+						url: "/api/users/" + id + "/",
+						success: function (response) {
+							// alert(response.name);
+							data();
+							iziToast.success({ timeout: 4000, icon: 'fas fa-check', title: 'Başarılı!', message: "Başarılı bir şekilde silindi" });
+
+						},
+						error: function (error) {
+							console.error("Veri alınamadı!", error);
+						}
+					});
+				}
+			});
+		});
+
+
+
+		function data() {
+			$.ajax({
+				type: "GET",
+				url: "/api/users/",
+				dataType: "json",
+				success: function (response) {
+					// Veriyi aldığımızda önce tablo içeriğini temizleyelim
+					$("#example tbody").empty();
+
+					// Her bir nesneyi tabloya ekleyelim
+					$.each(response, function (index, item) {
+						var row = "<tr>" +
+							"<td>" + item.id + "</td>" +
+							"<td>" + item.name + "</td>" +
+							"<td>" + item.surname + "</td>" +
+							"<td>" + item.mail + "</td>" +
+							"<td>" + `
+								<div class="row g-1">
+									<div class="col-6"><button type="button" data-id="${item.id}" class="btn btn-primary w-100 btnUpdate">Güncelle</button></div>
+									<div class="col-6"><button  type="button" data-id="${item.id}" class="btn btn-danger w-100 btnDelete">Sil</button></div>
+								</div>`+
+							"</td>" +
+							"</tr>";
+
+						$("#example tbody").append(row);
+					});
+				},
+				error: function (error) {
+					console.error("Veri alınamadı!", error);
+				}
+			});
+		}
+
+
+
+
+
+
+
+
+
+		$("#FormAdd").submit(function (e) {
+
+			e.preventDefault();
+
+
+
+
+
+			var request = {
+				name: $("#name").val(),
+				surname: $("#surname").val(),
+				mail: $("#mail").val(),
+				password: $("#password").val(),
+				contactNumber: $("#contactNumber").val(),
+				identityNumber: $("#identityNumber").val(),
+				picturePath: $("#picturePath").val(),
+				city: $("#city").val(),
+				country: $("#country").val(),
+				district: $("#district").val(),
+
+			};
+
+			$.ajax({
+				type: "POST",
+				url: "/api/users/",
+				data: request,
+				success: function (response) {
+
+
+
+
+
+					$("#FormAdd").trigger("reset");
+					$("#ModalAdd").modal("hide");
+					iziToast.success({ timeout: 4000, icon: 'fas fa-check', title: 'Başarılı!', message: "Başarılı bir şekilde Eklendi" });
+					data();
+
+
+
+				},
+				error: function (error) {
+					console.log("Hata: ", error);
+				}
+			});
+
+		});
+
+
+		$("#FormUpdate").submit(function (e) {
+
+			e.preventDefault();
+
+			var id = $("#updateId").val();
+
+			var request = {
+			
+				name: $("#nameUpdate").val(),
+				surname: $("#surnameUpdate").val(),
+				mail: $("#mailUpdate").val(),
+				password: $("#passwordUpdate").val(),
+				contactNumber: $("#contactNumberUpdate").val(),
+				identityNumber: $("#identityNumberUpdate").val(),
+				picturePath: $("#picturePathUpdate").val(),
+				city: $("#cityUpdate").val(),
+				country: $("#countryUpdate").val(),
+				district: $("#districtUpdate").val()
+			};
+
+			$.ajax({
+				type: "PUT",
+				url: "/api/users/" + id + "/",
+				data: request,
+				success: function (response) {
+
+					$("#ModalUpdate").modal("hide");
+					iziToast.success({ timeout: 4000, icon: 'fas fa-check', title: 'Başarılı!', message: "Başarılı bir şekilde güncellendi" });
+					data();
+
+				},
+				error: function (error) {
+					console.log("Hata: ", error);
+				}
+			});
+
+		});
+	</script>
+
+</body>
+
+</html>

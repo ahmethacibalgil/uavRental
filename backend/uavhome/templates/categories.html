@@ -1,0 +1,422 @@
+{% load static %}
+
+<!doctype html>
+<html class="sidebar-left-big-icons">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<title>Kategori</title>
+
+	<!-- Vendor CSS -->
+	<link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.css' %}">
+	<link rel="stylesheet" href="{% static 'vendor/font-awesome/css/all.min.css' %}">
+
+	<!-- Theme CSS -->
+	<link rel="stylesheet" href="{% static 'vendor/morris/morris.css' %}">
+	<link rel="stylesheet" href="{% static 'css/theme.css' %}">
+	<link rel="stylesheet" href="{% static 'css/skins/default.css' %}">
+	<link rel="stylesheet" href="{% static 'css/custom.css' %}">
+	<link rel="stylesheet" href="{% static 'iziTots/css/iziToast.min.css' %}">
+	<link rel="stylesheet" href="{% static '_dataTable/datatables.min.css' %}">
+	<link rel="stylesheet" href="{% static '_dataTable/tableCategory/table.css' %}">
+	<link rel="stylesheet" href="{% static 'vendor/bootstrap-datepicker/css/bootstrap-datepicker3.css' %}">
+
+
+
+
+</head>
+
+<body>
+	<input type="hidden" id="updateId">
+	<section class="body">
+		<!-- start: header -->
+		<header class="header" id="header">
+		</header>
+		<!-- end: header -->
+
+		<div class="inner-wrapper">
+			<!-- start: sidebar -->
+			<aside id="sidebar-left" class="sidebar-left">
+			</aside>
+			<!-- end: sidebar -->
+
+
+			<section role="main" class="content-body">
+				<header class="page-header"></header>
+				<!-- start: page -->
+
+
+
+
+
+
+				<section>
+					<div class="card card-modern mt-2">
+						<div class="card-body">
+							<div class="row g-2">
+
+								<div class="col-lg-2">
+									<button class="btn btn-primary w-100" id="OrderAdd" data-bs-toggle="modal"
+										data-bs-target="#ModalAdd">
+										Kategori Ekle
+										<i class="fa-solid fa-send-back mx-1"></i>
+									</button>
+								</div>
+
+
+							</div>
+
+						</div>
+					</div>
+				</section>
+
+				<section>
+					<div class="card card-modern mt-2">
+						<div class="card-body pt-4 card-table">
+
+
+							<div class="table-resonsive position-relative">
+								<table id="example" class="display table  table-striped table-bordered"
+									style="width:100%">
+									<thead class="bg-dark text-white table-head-position-sticky">
+										<tr>
+
+											<!-- <th style="width: 7px;"></th> -->
+											<th style="width: 7px;"></th>
+
+											<th>Kategori Adı</th>
+											<th>Eklenme Tarihi</th>
+											<th>Güncellenme Tarihi</th>
+
+
+											<th style="width: 200px;"></th>
+
+										</tr>
+									</thead>
+									<tbody></tbody>
+									<!-- <tfoot>
+										<tr>
+											<th></th>
+											<th></th>
+											<th>Sözleşme No</th>
+											<th>1</th>
+											<th>2</th>
+											<th>3</th>
+											<th>date</th>
+										</tr>
+									</tfoot> -->
+								</table>
+							</div>
+
+
+
+						</div>
+					</div>
+				</section>
+
+
+
+
+
+
+
+
+
+
+
+				<!-- end: page -->
+			</section>
+		</div>
+	</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<!-- end  -->
+	<div class="modal fade" id="ModalDelete" tabindex="-1">
+		<div class="modal-dialog modal-sm">
+			<div class="modal-content">
+				<div class="modal-header bg-danger text-white py-3">
+					<h1 class="modal-title fs-5 mt-0" id="exampleModalLabel">Seçilenleri Sil</h1>
+					<button type="button" class="btn-close text-white" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body bg-warning text-white d-flex align-items-center py-4">
+					<i class="fa-solid fa-triangle-exclamation fs-1 me-3"></i> Silmek istediğinizden emin misiniz?
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary btn-sm" data-bs-dismiss="modal">Kapat</button>
+					<button type="button" class="btn btn-danger btn-sm" onclick="showSuccessToast()">Evet, silinsin <i
+							class="fa-solid fa-check"></i></button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+	<div class="modal fade" id="ModalAdd" tabindex="-1">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header bg-primary text-white py-3">
+					<h1 class="modal-title fs-5 mt-0" id="exampleModalLabel"></h1>
+					<button type="button" class="btn-close text-white" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body py-4 position-relative">
+					<div class="search-content m-0">
+						<form id="FormAdd">
+							<div class="mb-3">
+								<label class="form-label">Kategori Adı</label>
+								<input type="text" class="form-control" required id="categoryName">
+							</div>
+							<button type="submit" class="btn btn-success px-5">Ekle</button>
+						</form>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="ModalUpdate" tabindex="-1">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header bg-primary text-white py-3">
+					<h1 class="modal-title fs-5 mt-0" id="exampleModalLabel"></h1>
+					<button type="button" class="btn-close text-white" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body py-4 position-relative">
+					<div class="search-content m-0">
+						<form id="FormUpdate">
+							<div class="mb-3">
+								<label class="form-label">Kategori Adı</label>
+								<input type="text" class="form-control" required id="categoryNameUpdate">
+							</div>
+							<button type="submit" class="btn btn-success px-5">Güncelle</button>
+						</form>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+	<!-- Vendor -->
+	<script src="{% static 'vendor/jquery/jquery.js' %}"></script>
+	<script src="{% static 'vendor/jquery-browser-mobile/jquery.browser.mobile.js' %}"></script>
+	<script src="{% static 'vendor/nanoscroller/nanoscroller.js' %}"></script>
+	<script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+
+
+	<script src="{% static 'vendor/popper/umd/popper.min.js' %}"></script>
+	<script src="{% static 'vendor/modernizr/modernizr.js' %}"></script>
+
+
+
+	<script src="{% static 'vendor/bootstrap-datepicker/js/bootstrap-datepicker.js' %}"></script>
+	<script src="{% static 'vendor/common/common.js' %}"></script>
+
+
+	<script src="{% static 'iziTots/js/iziToast.min.js' %}"></script>
+	<script src="{% static 'iziTots/js/settings.js' %}"></script>
+
+	<script src="{% static 'js/custom.js' %}"></script>
+	<script src="{% static 'js/handlebars.min.js' %}"></script>
+	<script src="{% static '_layout.js' %}"></script>
+
+
+	<script src="{% static '_dataTable/datatables.min.js' %}"></script>
+	<script src="https://cdn.datatables.net/fixedheader/3.1.9/js/dataTables.fixedHeader.min.js"></script>
+
+	<!-- <script src="{% static '_dataTable/tableCategory/table.js' %}"></script> -->
+
+
+
+
+	<script src="{% static 'js/theme.js' %}"></script>
+	<script src="{% static 'js/theme.init.js' %}"></script>
+	<script src="{% static 'js/examples/examples.advanced.form.js' %}"></script>
+
+
+	<script>
+		$(document).ready(function () {
+			data();
+
+
+			$("body").on("click", ".btnUpdate", function (e) {
+				e.preventDefault();
+				var id = $(this).attr("data-id");
+				$("#ModalUpdate").modal("show");
+				$.ajax({
+					type: "GET",
+					url: "/api/category/" + id + "/",
+					success: function (response) {
+						// alert(response.name);
+						$("#categoryNameUpdate").val(response.name);
+						$("#updateId").val(response.id);
+
+					},
+					error: function (error) {
+						console.error("Veri alınamadı!", error);
+					}
+				});
+			});
+
+			$("body").on("click", ".btnDelete", function (e) {
+				e.preventDefault();
+				var id = $(this).attr("data-id");
+
+				var onay = confirm("Bu öğeyi silmek istediğinizden emin misiniz?");
+				if (onay) {
+					$.ajax({
+						type: "DELETE",
+						url: "/api/category/" + id + "/",
+						success: function (response) {
+							// alert(response.name);
+							data();
+							iziToast.success({ timeout: 4000, icon: 'fas fa-check', title: 'Başarılı!', message: "Başarılı bir şekilde silindi" });
+
+						},
+						error: function (error) {
+							console.error("Veri alınamadı!", error);
+						}
+					});
+				}
+			});
+		});
+
+
+
+		function data() {
+			$.ajax({
+				type: "GET",
+				url: "/api/category/",
+				dataType: "json",
+				success: function (response) {
+					// Veriyi aldığımızda önce tablo içeriğini temizleyelim
+					$("#example tbody").empty();
+
+					// Her bir nesneyi tabloya ekleyelim
+					$.each(response, function (index, item) {
+						var row = "<tr>" +
+							"<td>" + item.id + "</td>" +
+							"<td>" + item.name + "</td>" +
+							"<td>" + item.createDate + "</td>" +
+							"<td>" + item.editingDate + "</td>" +
+							"<td>" + `
+								<div class="row g-1">
+									<div class="col-6"><button type="button" data-id="${item.id}" class="btn btn-primary w-100 btnUpdate">Güncelle</button></div>
+									<div class="col-6"><button  type="button" data-id="${item.id}" class="btn btn-danger w-100 btnDelete">Sil</button></div>
+								</div>`+
+							"</td>" +
+							"</tr>";
+
+						$("#example tbody").append(row);
+					});
+				},
+				error: function (error) {
+					console.error("Veri alınamadı!", error);
+				}
+			});
+		}
+
+
+
+
+
+
+
+
+
+		$("#FormAdd").submit(function (e) {
+
+			e.preventDefault();
+
+
+
+
+
+			var request = {
+
+				name: $("#categoryName").val(),
+
+
+			};
+
+			$.ajax({
+				type: "POST",
+				url: "/api/category/",
+				data: request,
+				success: function (response) {
+
+
+
+
+
+					$("#FormAdd").trigger("reset");
+					$("#ModalAdd").modal("hide");
+					iziToast.success({ timeout: 4000, icon: 'fas fa-check', title: 'Başarılı!', message: "Başarılı bir şekilde Eklendi" });
+					data();
+
+
+
+				},
+				error: function (error) {
+					console.log("Hata: ", error);
+				}
+			});
+
+		});
+
+
+		$("#FormUpdate").submit(function (e) {
+
+			e.preventDefault();
+
+			var id = $("#updateId").val();
+
+			var request = {
+
+				name: $("#categoryNameUpdate").val(),
+			};
+
+			$.ajax({
+				type: "PUT",
+				url: "/api/category/" + id + "/",
+				data: request,
+				success: function (response) {
+
+					$("#ModalUpdate").modal("hide");
+					iziToast.success({ timeout: 4000, icon: 'fas fa-check', title: 'Başarılı!', message: "Başarılı bir şekilde güncellendi" });
+					data();
+
+				},
+				error: function (error) {
+					console.log("Hata: ", error);
+				}
+			});
+
+		});
+	</script>
+
+</body>
+
+</html>

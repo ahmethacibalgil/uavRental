@@ -1,0 +1,600 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en" data-bs-theme="auto">
+
+<head>
+    <script src="/docs/5.3/assets/js/color-modes.js"></script>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.115.4">
+    <title>Detay</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/album/">
+
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="/docs/5.3/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
+    <link rel="icon" href="/docs/5.3/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="/docs/5.3/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+    <link rel="manifest" href="/docs/5.3/assets/img/favicons/manifest.json">
+    <link rel="mask-icon" href="/docs/5.3/assets/img/favicons/safari-pinned-tab.svg" color="#712cf9">
+    <link rel="icon" href="/docs/5.3/assets/img/favicons/favicon.ico">
+    <meta name="theme-color" content="#712cf9">
+
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+
+        .b-example-divider {
+            width: 100%;
+            height: 3rem;
+            background-color: rgba(0, 0, 0, .1);
+            border: solid rgba(0, 0, 0, .15);
+            border-width: 1px 0;
+            box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+        }
+
+        .b-example-vr {
+            flex-shrink: 0;
+            width: 1.5rem;
+            height: 100vh;
+        }
+
+        .bi {
+            vertical-align: -.125em;
+            fill: currentColor;
+        }
+
+        .nav-scroller {
+            position: relative;
+            z-index: 2;
+            height: 2.75rem;
+            overflow-y: hidden;
+        }
+
+        .nav-scroller .nav {
+            display: flex;
+            flex-wrap: nowrap;
+            padding-bottom: 1rem;
+            margin-top: -1px;
+            overflow-x: auto;
+            text-align: center;
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .btn-bd-primary {
+            --bd-violet-bg: #712cf9;
+            --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
+
+            --bs-btn-font-weight: 600;
+            --bs-btn-color: var(--bs-white);
+            --bs-btn-bg: var(--bd-violet-bg);
+            --bs-btn-border-color: var(--bd-violet-bg);
+            --bs-btn-hover-color: var(--bs-white);
+            --bs-btn-hover-bg: #6528e0;
+            --bs-btn-hover-border-color: #6528e0;
+            --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
+            --bs-btn-active-color: var(--bs-btn-hover-color);
+            --bs-btn-active-bg: #5a23c8;
+            --bs-btn-active-border-color: #5a23c8;
+        }
+
+        .bd-mode-toggle {
+            z-index: 1500;
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <input type="hidden" id="detailId">
+
+    <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+        <symbol id="check2" viewBox="0 0 16 16">
+            <path
+                d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
+        </symbol>
+        <symbol id="circle-half" viewBox="0 0 16 16">
+            <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z" />
+        </symbol>
+        <symbol id="moon-stars-fill" viewBox="0 0 16 16">
+            <path
+                d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z" />
+            <path
+                d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z" />
+        </symbol>
+        <symbol id="sun-fill" viewBox="0 0 16 16">
+            <path
+                d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z" />
+        </symbol>
+    </svg>
+
+
+
+    <header data-bs-theme="dark">
+
+        <div class="navbar navbar-dark bg-dark shadow-sm">
+            <div class="container">
+                <a href="#" class="navbar-brand d-flex align-items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor"
+                        stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="me-2"
+                        viewBox="0 0 24 24">
+                        <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
+                        <circle cx="12" cy="13" r="4" />
+                    </svg>
+                    <strong>Album</strong>
+                </a>
+                <div id="buttonGrp">
+                    <button class="btn btn-dark" id="btnGiris" data-bs-toggle="modal" data-bs-target="#ModalGiris">Giriş
+                        Yap</button>
+                    <button class="btn btn-dark" id="btnKayit" data-bs-toggle="modal" data-bs-target="#ModalAdd">Kayıt
+                        Ol</button>
+                    <button class="btn btn-dark" id="btnProfil" style="display: none;">Profil</button>
+                    <button class="btn btn-dark" id="btnCikis" style="display: none;">Çıkış Yap</button>
+                    <a href="/kiraladiklarim" id="btnKiraladiklarim" class="btn btn-dark" style="display: none;"> kiraladiklarim</a>
+
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+
+
+
+        <div class="album py-5 bg-body-tertiary">
+            <div class="container">
+                <div class="mb-4">
+                    <form id="kiralamaFormu">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <p><b>kdv:</b> 3333300.00%</p>
+                                <p><b>ötv:</b> 80.0%</p>
+                            </div>
+                            <div class="col-lg-4 mb-3">
+                                <input type="date" id="startDate" class="form-control" required>
+                            </div>
+                            <div class="col-lg-4 mb-3">
+                                <input type="date" id="endDate" class="form-control" required>
+                            </div>
+                            <div class="col-lg-4 mb-3">
+                                <button type="submit" class="btn btn-primary">kirala</button>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" id="content">
+
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="text-body-secondary py-5">
+        <div class="container">
+            <p class="float-end mb-1">
+                <a href="#">Back to top</a>
+            </p>
+        </div>
+    </footer>
+
+
+
+
+    <div class="modal fade" id="ModalGiris" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white py-3">
+                    <h1 class="modal-title fs-5 mt-0" id="exampleModalLabel"></h1>
+                    <button type="button" class="btn-close text-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body py-4 position-relative">
+                    <div class="search-content m-0">
+                        <form id="FormLogin" class="row">
+
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">mail</label>
+                                    <input type="text" class="form-control" required id="mail">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">şifre</label>
+                                    <input type="password" class="form-control" required id="password">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-success px-5">Giriş Yap</button>
+                            </div>
+
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <div class="modal fade" id="ModalAdd" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white py-3">
+                    <h1 class="modal-title fs-5 mt-0" id="exampleModalLabel"></h1>
+                    <button type="button" class="btn-close text-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body py-4 position-relative">
+                    <div class="search-content m-0">
+                        <form id="FormAdd" class="row">
+
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Ad</label>
+                                    <input type="text" class="form-control" required id="name">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Soy Ad</label>
+                                    <input type="text" class="form-control" required id="surname">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Mail</label>
+                                    <input type="text" class="form-control" required id="mailUpdate">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">şifre</label>
+                                    <input type="text" class="form-control" required id="passwordUpdate">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Ülke</label>
+                                    <input type="text" class="form-control" required id="country">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Şehir</label>
+                                    <input type="text" class="form-control" required id="city">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">İlçe</label>
+                                    <input type="text" class="form-control" required id="district">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">İletişim Numarası</label>
+                                    <input type="text" class="form-control" required id="contactNumber">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Kimlik Numarası</label>
+                                    <input type="text" class="form-control" required id="identityNumber">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+
+                                <div class="mb-3">
+                                    <label class="form-label">Resim</label>
+                                    <input type="text" class="form-control" required id="picturePath">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-success px-5">Ekle</button>
+                            </div>
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+
+
+    <script src="{% static 'vendor/jquery/jquery.js' %}"></script>
+
+    <script>
+
+        function hata() {
+            alert("Lütfen giriş yapınız!");
+            $("#ModalGiris").modal("show");
+        }
+
+        $(document).ready(function () {
+
+            function getQueryParam(name) {
+                var urlParams = new URLSearchParams(window.location.search);
+                return urlParams.get(name);
+            }
+
+            var id = getQueryParam('id');
+            if (id) {
+
+                console.log('ID değeri:', id);
+                $("#detailId").val(id);
+
+            } else {
+                console.log('ID parametresi bulunamadı.');
+            }
+
+            var user = JSON.parse(localStorage.getItem('user'));
+
+            if (user) {
+                $("#btnGiris").css("display", "none");
+                $("#btnKayit").css("display", "none");
+                $("#btnProfil").css("display", "inline-flex");
+                $("#btnProfil").text(user.email);
+                $("#btnCikis").css("display", "inline-flex");
+                $("#btnKiraladiklarim").css("display", "inline-flex");
+
+            }
+
+
+
+
+            $("#kiralamaFormu").submit(function (e) {
+                e.preventDefault();
+                var request = {
+                    startDate: $("#startDate").val(),
+                    endDate: $("#endDate").val(),
+                    isConfirm: 1,
+                    uavId: $("#detailId").val(),
+                    userId: user.id,
+                    kdvId: 2,
+                    otvId: 1
+                };
+                $.ajax({
+                    type: "POST",
+                    url: "/api/cart/",
+                    data: request,
+                    success: function (response) {
+
+                        //------------------------------------------
+                        var request2 = {
+                            userId: user.id,
+                            cartId: response.id
+                        };
+
+                        $.ajax({
+                            type: "POST",
+                            url: "/api/cartmap/",
+                            data: request2,
+                            success: function (response) {
+                                alert("Kiralama işlemi başarılı!");
+                                window.location.href = "/";
+
+                            }
+                        });
+                        //------------------------------------------
+                    }
+                });
+
+
+
+            });
+
+
+
+
+
+            $.ajax({
+                type: "GET",
+                url: "/api/uav/" + id + "/",
+                dataType: "json",
+                success: function (response) {
+                    console.log("Veri alındı!", response);
+                    // Veriyi aldığımızda önce tablo içeriğini temizleyelim
+                    $("#content").empty();
+                    var html =
+                        `
+                        <img src="${response.uavMedia}" />
+                        <table class="table table-bordered">
+                            <tr>
+                                <td><b>Adı:</b></td>
+                                <td>${response.name}</td>
+                            </tr>
+                            <tr>
+                                <td><b>Fiyat:</b></td>
+                                <td>${response.price}</td>
+                            </tr>
+                            <tr>
+                                <td><b>Geçmiş Fiyat:</b></td>
+                                <td>${response.previousPrice}</td>
+                            </tr>
+                            <tr>
+                                <td><b>Marka:</b></td>
+                                <td>${response.brand}</td>
+                            </tr>
+                            <tr>
+                                <td><b>Haberleşme Mesafesi:</b></td>
+                                <td>${response.communicationDistance}</td>
+                            </tr>
+                            <tr>
+                                <td><b>Mühimmat:</b></td>
+                                <td>${response.ammunition}</td>
+                            </tr>
+                            <tr>
+                                <td><b>Dayanıklılık:</b></td>
+                                <td>${response.durability}</td>
+                            </tr>
+                            <tr>
+                                <td><b>Seyahat hızı:</b></td>
+                                <td>${response.travelSpeed}</td>
+                            </tr>
+                            <tr>
+                                <td><b>Yakıt Kapasitesi:</b></td>
+                                <td>${response.fuelCapacity}</td>
+                            </tr>
+                            <tr>
+                                <td><b>Operasyonal İrtifa:</b></td>
+                                <td>${response.operationalAltitude}</td>
+                            </tr>
+                            <tr>
+                                <td><b>Yük Kapasitesi:</b></td>
+                                <td>${response.loadCapacity}</td>
+                            </tr>
+                            <tr>
+                                <td><b>Depozito:</b></td>
+                                <td>${response.deposit}</td>
+                            </tr>
+                            <tr>
+                                <td><b>Kategori:</b></td>
+                                <td>${response.category}</td>
+                            </tr>
+                        </table>
+                        `;
+                    $("#content").append(html);
+
+                },
+                error: function (error) {
+                    console.error("Veri alınamadı!", error);
+                }
+            });
+        });
+
+
+
+        $("#btnCikis").click(function (e) {
+            e.preventDefault();
+            localStorage.removeItem('user');
+            $("#btnGiris").css("display", "inline-flex");
+            $("#btnKayit").css("display", "inline-flex");
+            $("#btnProfil").css("display", "none");
+            $("#btnCikis").css("display", "none");
+            $("#btnKiraladiklarim").css("display", "none");
+
+
+            alert("Başarıyla çıkış yaptınız!");
+            location.location = "/";
+
+
+
+        });
+
+
+
+
+        function findUser(users, email, password) {
+            for (var i = 0; i < users.length; i++) {
+                if (users[i].mail === email && users[i].password === password) {
+                    return users[i];
+                }
+            }
+            return null;
+        }
+
+        function login(email, id) {
+            var user = {
+                email: email,
+                id: id
+            };
+            localStorage.setItem('user', JSON.stringify(user));
+        }
+
+
+
+
+
+
+        $("#FormAdd").submit(function (e) {
+
+            e.preventDefault();
+
+
+
+
+
+            var request = {
+                name: $("#name").val(),
+                surname: $("#surname").val(),
+                mail: $("#mailUpdate").val(),
+                password: $("#passwordUpdate").val(),
+                contactNumber: $("#contactNumber").val(),
+                identityNumber: $("#identityNumber").val(),
+                picturePath: $("#picturePath").val(),
+                city: $("#city").val(),
+                country: $("#country").val(),
+                district: $("#district").val(),
+
+            };
+
+            $.ajax({
+                type: "POST",
+                url: "/api/users/",
+                data: request,
+                success: function (response) {
+
+
+
+
+
+                    $("#FormAdd").trigger("reset");
+                    $("#ModalAdd").modal("hide");
+                    alert("Kayıt Başarılı");
+
+
+
+                },
+                error: function (error) {
+                    console.log("Hata: ", error);
+                }
+            });
+
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+.form-input-table-check{
+    height: 18px;
+    width: 18px;
+    border-radius: 0px !important;
+}
+@media (max-width: 1500px){
+    .card-table{
+        overflow-x: scroll;
+    }
+}
+
+.table-icon-size{
+    font-size: 18px;
+}
+
+#example{
+    min-width: 1200px !important;
+    display: table;
+    margin: 0 auto;
+}
+
+
+
+
+
+
+
+#example tbody tr{
+    height: 45px;
+    justify-content: center;
+}
+
+#example tbody td{
+    vertical-align: middle;
+}
